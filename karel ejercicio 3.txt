@@ -1,0 +1,147 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion devolverse como inicio
+    	repetir 2 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion infinito como inicio
+    	mientras frente-libre hacer inicio
+        	avanza;
+        fin;
+    fin;
+    define-nueva-instruccion correr como inicio
+    	si frente-libre entonces inicio
+        	avanza;
+        fin;
+    fin;
+    define-nueva-instruccion giro como inicio
+    	si izquierda-bloqueada o frente-bloqueado y orientado-al-oeste entonces inicio
+        	gira-derecha;
+            avanza;
+            gira-derecha;
+        fin;
+        si derecha-bloqueada o frente-bloqueado y orientado-al-este entonces inicio
+        	gira-izquierda;
+            avanza;
+            gira-izquierda;
+        fin;
+        fin;
+    inicia-ejecucion
+        si orientado-al-norte y izquierda-libre y derecha-libre y (frente-libre o frente-bloqueado) entonces inicio
+        	gira-izquierda;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-norte y izquierda-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	repetir 2 veces inicio
+            	gira-izquierda;
+            fin;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-norte y derecha-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	gira-izquierda;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-sur y derecha-libre y izquierda-libre y (frente-libre o frente-bloqueado) entonces inicio
+        	gira-derecha;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-sur y derecha-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-sur y izquierda-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	gira-derecha;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-este y derecha-libre y izquierda-libre y (frente-libre o frente-bloqueado) entonces inicio
+        	devolverse;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-este y izquierda-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	devolverse;
+            infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-este y derecha-bloqueada y (frente-libre o frente-bloqueado) entonces inicio
+        	devolverse;
+            si frente-libre entonces inicio
+            	infinito;
+                devolverse;
+                fin
+                sino inicio
+                devolverse;
+                fin;
+            fin;
+        si orientado-al-oeste y (derecha-libre o derecha-bloqueada) y frente-libre entonces inicio
+        	infinito;
+            gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-oeste y (derecha-libre o derecha-bloqueada) y frente-bloqueado entonces inicio
+        	gira-izquierda;
+            infinito;
+            gira-izquierda;
+            fin;
+        si orientado-al-oeste y izquierda-bloqueada y frente-bloqueado entonces inicio
+        	devolverse;
+            fin;
+        si orientado-al-oeste y izquierda-bloqueada y frente-libre entonces inicio
+        	infinito;
+            devolverse;
+            fin;    
+        mientras frente-libre hacer inicio;
+        	si no-junto-a-zumbador entonces inicio
+                correr;
+             fin;
+             si junto-a-zumbador entonces inicio
+             	coge-zumbador;
+             	correr;
+             fin;
+        	mientras frente-bloqueado o (frente-bloqueado y junto-a-zumbador) hacer inicio
+        	si orientado-al-este y izquierda-libre entonces inicio
+            	giro;
+                fin
+                sino inicio
+                si orientado-al-este y izquierda-bloqueada entonces inicio
+                apagate;
+                fin;
+            fin;
+            si orientado-al-oeste y derecha-libre entonces inicio
+            	giro;
+            fin;
+            fin;
+            si orientado-al-oeste y derecha-bloqueada y frente-libre entonces inicio
+            	correr;
+                si frente-bloqueado entonces inicio
+                	devolverse;
+                    infinito;
+                    apagate;
+                fin;
+            fin;
+        fin;
+    termina-ejecucion
+finalizar-programa

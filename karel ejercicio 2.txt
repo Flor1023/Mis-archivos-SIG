@@ -1,0 +1,63 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion devolverse como inicio
+    	repetir 2 veces inicio
+        	gira-izquierda;
+        fin;
+        avanza
+    fin;
+	define-nueva-instruccion llenar-fila como inicio
+    	mientras frente-libre hacer inicio
+        	avanza;
+            	si no-junto-a-zumbador entonces inicio
+            		deja-zumbador;
+                    llenar-fila;
+                fin;
+                si junto-a-zumbador y frente-libre entonces inicio
+                	avanza;
+                    si junto-a-zumbador entonces inicio
+                    	devolverse;
+                    	gira-derecha;
+                    	avanza;
+                    	gira-izquierda;
+                    	llenar-fila;
+                   fin
+                   sino inicio
+                   deja-zumbador;
+                   llenar-fila;
+                   fin;
+                fin;
+            	si junto-a-zumbador y frente-bloqueado entonces inicio
+            		gira-derecha;
+                	avanza;
+                    	si junto-a-zumbador entonces inicio
+                        apagate;
+                        fin
+                        sino inicio
+                		deja-zumbador;
+                		gira-derecha;
+                		llenar-fila;
+                        fin;
+                fin;
+        fin;
+    fin;
+    inicia-ejecucion
+    	deja-zumbador;
+        mientras frente-libre hacer inicio
+        avanza;
+        deja-zumbador;
+        gira-izquierda;
+        avanza;
+        deja-zumbador;
+        gira-derecha;
+        	si frente-bloqueado y izquierda-bloqueada entonces inicio
+            	gira-derecha;
+                llenar-fila;
+                fin;
+        fin;
+    termina-ejecucion
+finalizar-programa
